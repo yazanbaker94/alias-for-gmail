@@ -4,6 +4,20 @@ Send email from your own verified domain while composing in Gmail. Alias adds a 
 
 This is the standalone community source edition. The former Chrome Web Store listing and managed service are discontinued. There is no developer-operated backend, subscription, account registration, analytics, waitlist, or uninstall survey. No AWS or Stripe setup is needed.
 
+## See it in Gmail
+
+[![Alias adds a separate Send via button beside Gmail's normal Send button](docs/media/gmail-alias-button.png)](https://github.com/yazanbaker94/alias-for-gmail/blob/main/docs/media/alias-gmail-demo.mp4)
+
+**[Watch the 27-second Gmail demo](https://github.com/yazanbaker94/alias-for-gmail/blob/main/docs/media/alias-gmail-demo.mp4)** · [Download the MP4](https://raw.githubusercontent.com/yazanbaker94/alias-for-gmail/main/docs/media/alias-gmail-demo.mp4)
+
+Write in Gmail → click **Send via alias** → your connected Resend account sends from your verified domain. Replies follow your existing mailbox or forwarding setup.
+
+| 1. Compose in Gmail | 2. Receive from your domain |
+| --- | --- |
+| ![Compose a normal message in Gmail, with the demo recipient masked](docs/media/gmail-compose.png) | ![The demo email received from the custom-domain sender](docs/media/gmail-received.png) |
+
+These are real Gmail captures from the original release, recorded September 6, 2026. The demo is an edited capture sequence with zooms, cursor emphasis and shortened timing, not an uninterrupted recording. Recipient details are masked. It demonstrates the direct Resend flow, not a fresh live test of this refactored edition. The ending references the former product website; use the local installation steps below instead. See [media notes](docs/media/README.md).
+
 ## Install locally
 
 1. Download this repository as a ZIP and extract it (or clone it).
@@ -42,7 +56,7 @@ npm run check
 
 The extension runs directly from `extension/`; no bundler, remote code or deployment is required. Tests use synthetic Gmail fixtures and mocked provider responses, not live email or credentials.
 
-This repository intentionally excludes the retired backend, admin site, private operations notes, production deployment archives, original design exports and live demo captures.
+This repository intentionally excludes the retired backend, admin site, private operations notes, production deployment archives, original design exports and private raw demo captures. Only the reviewed public demo exports are included.
 
 ## License
 
