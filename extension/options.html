@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Alias — Outbound mail</title>
+    <link rel="icon" type="image/png" href="assets/alias-32.png">
+    <link rel="stylesheet" href="options.css">
+    <script src="options.js" defer="" type="module"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Alias settings navigation">
+        <div class="brand-stamp" aria-label="Alias — Dispatch 2.0 outbound mail">
+          <span class="stamp-kicker">Dispatch 2.0</span>
+          <span class="stamp-name">Alias</span>
+          <span class="stamp-caption">Outbound mail</span>
+          <span class="airmail-edge" aria-hidden="true"></span>
+        </div>
+
+        <nav class="side-nav">
+          <button class="nav-item is-active" type="button" data-view="overview" aria-current="page"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#overview"></use></svg><span>Overview</span></button>
+          <button class="nav-item" type="button" data-view="sender"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#user"></use></svg><span>Sender</span></button>
+          <button class="nav-item" type="button" data-view="delivery"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#send"></use></svg><span>Delivery</span></button>
+          <button class="nav-item" type="button" data-view="usage"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#usage"></use></svg><span>Usage &amp; Limits</span></button>
+          <button class="nav-item" type="button" data-view="advanced"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#sliders"></use></svg><span>Advanced</span></button>
+          <button class="nav-item" type="button" data-view="diagnostics"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#diagnostics"></use></svg><span>Diagnostics</span></button>
+          <button class="nav-item" type="button" data-view="support"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#support"></use></svg><span>Support</span></button>
+        </nav>
+
+        <div class="sidebar-account">
+          <span class="status-dot" aria-hidden="true"></span><span id="sidebarStatus">Setup incomplete</span>
+          <strong id="sidebarIdentity">No sender saved</strong>
+          <button class="icon-button" type="button" data-view="advanced" aria-label="Open advanced settings"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#settings"></use></svg></button>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <div id="notice" class="toast" role="status" aria-live="polite" hidden=""></div>
+        <form id="settingsForm" novalidate="">
+          <input id="mockMode" name="mockMode" type="checkbox" hidden="" tabindex="-1" aria-hidden="true">
+
+          <section class="view is-active" data-view-panel="overview" aria-labelledby="overviewHeading">
+            <header class="page-header">
+              <div><p class="page-kicker">Dispatch control</p><h1 id="overviewHeading">Overview</h1><p>Send email from your domain, without leaving Gmail.</p></div>
+              <a class="button button-secondary" href="https://mail.google.com/" target="_blank" rel="noreferrer"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#external"></use></svg>Open Gmail</a>
+            </header>
+
+            <section id="overviewSetupStatus" class="paper-card setup-status" aria-live="polite">
+              <span class="setup-status-emblem"><svg class="icon" aria-hidden="true"><use id="overviewSetupIcon" href="assets/icons.svg#info"></use></svg></span>
+              <div class="setup-status-body">
+                <span class="card-label">Gmail status</span>
+                <h2 id="overviewSetupTitle">Alias is not active in Gmail</h2>
+                <p id="overviewSetupMessage">Finish the required setup before opening Gmail.</p>
+                <div id="overviewConsentPrompt" class="overview-consent-prompt">
+                  <div><strong>What leaves Gmail</strong><p>Only after you press Send via alias, supported sender, recipient, subject, body and attachment data goes directly to your selected provider. No developer relay, analytics or feedback service receives it.</p></div>
+                  <label class="consent-row" for="dataUseConsent"><input id="dataUseConsent" name="dataUseConsent" type="checkbox"><span>I understand this data use and want to enable Alias in Gmail.</span></label>
+                  <p id="dataUseConsentError" class="field-error"></p>
+                </div>
+              </div>
+              <button id="overviewSetupAction" class="button button-primary" type="button">Fix setup</button>
+              <span class="cancel-waves" aria-hidden="true"></span>
+            </section>
+
+            <section class="paper-card identity-card">
+              <div class="card-label">Your identity</div>
+              <div class="identity-hero"><div id="overviewAvatar" class="avatar">A</div><div class="identity-copy"><strong id="overviewFromAddress">Add your sender address</strong><span id="overviewFromName">Your custom-domain identity</span></div><span id="readinessBadge" class="stamp-badge badge badge-neutral">Checking setup…</span></div>
+              <div class="divider-dashed"></div><div class="card-label">Mail route</div>
+              <div class="route-grid" aria-label="FROM, VIA, REPLIES mail route">
+                <div class="route-stop"><span class="route-label">From</span><div class="route-box"><svg class="provider-mark gmail-mark" aria-label="Gmail"><use href="assets/icons.svg#gmail"></use></svg><span><strong>Gmail compose</strong><small>You write in Gmail</small></span></div></div>
+                <svg class="route-arrow" viewBox="0 0 52 18" aria-hidden="true"><path d="M1 9h47m-8-7 9 7-9 7"></path></svg>
+                <div class="route-stop"><span class="route-label">Via</span><div class="route-box"><span id="overviewProviderMark" class="provider-monogram">R</span><span><strong id="overviewProviderName">Resend</strong><small id="overviewProviderDetail">Your provider account</small></span></div></div>
+                <svg class="route-arrow" viewBox="0 0 52 18" aria-hidden="true"><path d="M1 9h47m-8-7 9 7-9 7"></path></svg>
+                <div class="route-stop"><span class="route-label">Replies</span><div class="route-box"><svg class="route-inbox" aria-hidden="true"><use href="assets/icons.svg#inbox"></use></svg><span><strong>Sender alias</strong><small>Your inbound routing handles replies</small></span></div></div>
+              </div>
+              
+            </section>
+
+            <section class="paper-card compact-list">
+              <button type="button" data-view="advanced"><svg class="brand-row-mark gmail-mark" aria-hidden="true"><use href="assets/icons.svg#gmail"></use></svg><span class="row-label">Gmail integration</span><strong id="overviewEnabledState">Off</strong><svg class="icon chevron" aria-hidden="true"><use href="assets/icons.svg#chevron"></use></svg></button>
+              <button type="button" data-view="sender"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#globe"></use></svg><span class="row-label">Domain</span><strong id="overviewDomain">Not configured</strong><span id="overviewDomainBadge" class="mini-status">Pending</span><svg class="icon chevron" aria-hidden="true"><use href="assets/icons.svg#chevron"></use></svg></button>
+              <button type="button" data-view="delivery"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#send"></use></svg><span class="row-label">Delivery</span><strong id="overviewDelivery">Not configured</strong><svg class="icon chevron" aria-hidden="true"><use href="assets/icons.svg#chevron"></use></svg></button>
+              <button type="button" data-view="sender"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#reply"></use></svg><span class="row-label">Reply-To</span><strong>Locked to the From address</strong><svg class="icon chevron" aria-hidden="true"><use href="assets/icons.svg#chevron"></use></svg></button>
+            </section>
+            <aside class="postal-note"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#info"></use></svg><span>No MX changes. Alias handles outbound sending only.</span><span class="cancel-waves" aria-hidden="true"></span></aside>
+          </section>
+
+          <section class="view" data-view-panel="sender" aria-labelledby="identityHeading" hidden="">
+            <header class="page-header"><div><p class="page-kicker">Identity</p><h1 id="identityHeading">Sender</h1><p>Choose the identity used for outbound delivery.</p></div><a class="button button-secondary" href="https://mail.google.com/" target="_blank" rel="noreferrer"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#external"></use></svg>Open Gmail</a></header>
+            <section class="paper-card route-summary-card">
+              <div><span class="route-label">From</span><div class="route-inline"><div class="avatar small">A</div><span><strong id="senderRouteFrom">Add a sender</strong><small>Send as</small></span></div></div><svg class="route-arrow" viewBox="0 0 52 18" aria-hidden="true"><path d="M1 9h47m-8-7 9 7-9 7"></path></svg>
+              <div><span class="route-label">Via</span><div class="route-inline"><span class="provider-monogram">VIA</span><span><strong id="senderRouteProvider">Choose delivery</strong><small>Outbound provider</small></span></div></div><svg class="route-arrow" viewBox="0 0 52 18" aria-hidden="true"><path d="M1 9h47m-8-7 9 7-9 7"></path></svg>
+              <div><span class="route-label">Replies</span><div class="route-inline"><svg class="route-inbox" aria-hidden="true"><use href="assets/icons.svg#inbox"></use></svg><span><strong>Sender alias</strong><small>Existing routing receives replies</small></span></div></div>
+            </section>
+            <section class="paper-card form-card"><div class="card-label">Your sending address</div><div class="editorial-fields">
+              <div class="editorial-field"><span class="field-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg></span><label for="fromAddress">From address</label><div><input id="fromAddress" name="fromAddress" type="email" inputmode="email" spellcheck="false" autocomplete="email" maxlength="254" placeholder="support@example.com"><p id="fromAddressError" class="field-error" aria-live="polite"></p></div></div>
+              <div class="editorial-field"><span class="field-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#user"></use></svg></span><label for="fromName">From name <span class="optional">Optional</span></label><div><input id="fromName" name="fromName" type="text" autocomplete="name" maxlength="120" placeholder="Example Support"><p id="fromNameError" class="field-error" aria-live="polite"></p></div></div>
+              <div class="editorial-field"><span class="field-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#reply"></use></svg></span><span class="field-label">Reply-To</span><div><input id="replyToDisplay" type="text" value="Locked to the From address" disabled=""><p class="field-help">Alias always sets Reply-To to the exact From address. It cannot be changed here. Replies use the inbox or forwarding route you already manage for that address; Alias does not handle incoming mail.</p></div></div>
+              <div class="editorial-field"><span class="field-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users"></use></svg></span><label for="defaultBcc">Default Bcc <span class="optional">Optional</span></label><div><input id="defaultBcc" name="defaultBcc" type="email" inputmode="email" spellcheck="false" autocomplete="off" maxlength="254" placeholder="archive@example.com"><p class="field-help">Use your own provider account. Provider limits and charges apply.</p><p id="defaultBccError" class="field-error" aria-live="polite"></p></div></div>
+            </div></section>
+            <section class="paper-card compact-list titled-list"><div class="card-label">Delivery rules</div><button type="button" data-view="advanced"><svg class="icon"><use href="assets/icons.svg#globe"></use></svg><span class="row-label">Gmail integration</span><strong id="senderEnabledState">Off</strong><svg class="icon chevron"><use href="assets/icons.svg#chevron"></use></svg></button><button type="button" data-view="delivery"><svg class="icon"><use href="assets/icons.svg#send"></use></svg><span class="row-label">Delivery provider</span><strong id="senderProviderState">Not configured</strong><svg class="icon chevron"><use href="assets/icons.svg#chevron"></use></svg></button><button type="button" data-view="delivery"><svg class="icon"><use href="assets/icons.svg#shield"></use></svg><span class="row-label">Allowed sender</span><strong id="senderAllowedAddress">Save an address above</strong><svg class="icon chevron"><use href="assets/icons.svg#chevron"></use></svg></button></section>
+            <aside class="postal-note"><svg class="icon"><use href="assets/icons.svg#info"></use></svg><span id="senderProviderNote">The selected provider must approve the exact From address.</span><span class="cancel-waves"></span></aside>
+          </section>
+
+          <section class="view" data-view-panel="delivery" aria-labelledby="providerHeading" hidden="">
+            <header class="page-header delivery-overview"><div><p class="page-kicker">Route</p><h1 id="providerHeading">Delivery</h1><p>Choose how Alias sends your email.</p></div></header>
+            <fieldset class="provider-selector paper-card delivery-overview"><legend class="sr-only">Sending provider</legend>
+              
+              <div class="provider-divider"><span>Use your own provider instead</span></div>
+              <div class="direct-provider-grid"><label class="provider-option"><input id="providerCloudflare" name="provider" type="radio" value="cloudflare"><span class="provider-radio-card compact"><span class="provider-logo-circle"><svg class="cloudflare-mark" aria-hidden="true"><use href="assets/icons.svg#cloudflare"></use></svg></span><span class="provider-copy"><strong>Cloudflare</strong><small>Limited preview · Workers Paid for normal sending</small></span><svg class="icon chevron" aria-hidden="true"><use href="assets/icons.svg#chevron"></use></svg></span></label><label class="provider-option"><input id="providerResend" name="provider" type="radio" value="resend"><span class="provider-radio-card compact"><span class="provider-logo-circle"><svg class="resend-mark" aria-hidden="true"><use href="assets/icons.svg#resend"></use></svg></span><span class="provider-copy"><strong>Resend</strong><small>Start here · Your account and API key</small></span><svg class="icon chevron" aria-hidden="true"><use href="assets/icons.svg#chevron"></use></svg></span></label></div>
+            </fieldset>
+
+            <div id="cloudflarePanel" class="provider-panel paper-card" data-provider="cloudflare"><div class="panel-heading"><div><span class="provider-eyebrow"><svg class="cloudflare-mark"><use href="assets/icons.svg#cloudflare"></use></svg>Cloudflare Email Sending · Limited preview</span><h2>Connect Cloudflare</h2><p>Alias has live-tested only Cloudflare’s verified-destination path. Sending to arbitrary recipients requires Workers Paid and has not been live-validated by Alias.</p></div><a id="cloudflareDashboardLink" class="text-link" href="https://dash.cloudflare.com/?to=/:account/email-service/sending" target="_blank" rel="noreferrer">Open Email Sending ↗</a></div><div class="field-grid"><div class="field field-wide"><label for="cloudflareAccountId">Account ID</label><input id="cloudflareAccountId" name="cloudflareAccountId" type="text" spellcheck="false" autocomplete="off" maxlength="32" placeholder="32-character Cloudflare account ID"><p class="field-help">Find this on the Cloudflare account overview page. Once entered, the link above opens Email Sending for that account.</p><p id="cloudflareAccountIdError" class="field-error" aria-live="polite"></p></div><div class="field field-wide"><div class="label-line"><label for="cloudflareApiToken">API token</label><span id="tokenState" class="saved-state">No token saved</span></div><div class="secret-row"><input id="cloudflareApiToken" name="cloudflareApiToken" type="password" spellcheck="false" autocomplete="new-password" maxlength="500" placeholder="Paste a token to save it"><button id="clearTokenButton" class="button button-quiet" type="button">Clear saved token</button></div><p class="field-help">Use a dedicated token with only Email Sending: Edit. Leave blank to retain a saved token.</p><p id="cloudflareApiTokenError" class="field-error" aria-live="polite"></p></div></div><ul class="provider-facts"><li><strong>Limited preview:</strong> use Resend for the release-tested public route.</li><li><strong>Workers Paid is required</strong> to send to arbitrary recipients.</li><li><strong>Arbitrary-recipient sending is not live-validated by Alias.</strong> Cloudflare’s free test is limited to verified destinations in the same account.</li></ul></div>
+
+            <div id="resendPanel" class="provider-panel paper-card" data-provider="resend" hidden=""><div class="panel-heading"><div><span class="provider-eyebrow"><svg class="resend-chip" aria-hidden="true"><use href="assets/icons.svg#resend"></use></svg>Resend</span><h2>Connect Resend</h2><p>Use a domain already added and verified in Resend.</p></div><a class="text-link" href="https://resend.com/api-keys" target="_blank" rel="noreferrer">Open Resend ↗</a></div><div class="field-grid"><div class="field field-wide"><div class="label-line"><label for="resendApiKey">API key</label><span id="resendKeyState" class="saved-state">No key saved</span></div><div class="secret-row"><input id="resendApiKey" name="resendApiKey" type="password" spellcheck="false" autocomplete="new-password" maxlength="500" placeholder="Paste a key to save it"><button id="clearResendKeyButton" class="button button-quiet" type="button">Clear saved key</button></div><p class="field-help">Use a sending-only key restricted to this domain. Leave blank to retain a saved key.</p><p id="resendApiKeyError" class="field-error" aria-live="polite"></p></div></div><ul class="provider-facts"><li>Your domain may use any DNS host.</li><li>Send only to recipients who explicitly opted in.</li></ul></div>
+
+            
+          </section>
+
+          <section class="view" data-view-panel="usage" aria-labelledby="usageHeading" hidden="">
+            <header class="page-header"><div><p class="page-kicker">Account controls</p><h1 id="usageHeading">Usage &amp; Limits</h1><p>Use your own provider account. Provider limits and charges apply.</p></div></header>
+            <div class="usage-scope"><span class="mini-status">Use your own provider account. Provider limits and charges apply.</span><p>Use your own provider account. Provider limits and charges apply.</p></div>
+            
+            <section class="paper-card limits-card"><div class="card-label">Selected route capabilities</div><div class="capability-grid"><div><span>Recipients</span><strong id="capRecipients">Provider dependent</strong></div><div><span>Cc &amp; Bcc</span><strong id="capCcBcc">Provider dependent</strong></div><div><span>Attachments</span><strong id="capAttachments">Provider dependent</strong></div><div><span id="capRequestLabel">Request size</span><strong id="capRequestSize">Provider dependent</strong></div></div></section>
+            <aside id="usageProviderNote" class="postal-note"><svg class="icon"><use href="assets/icons.svg#info"></use></svg><span id="usageProviderMessage">Use your own provider account. Provider limits and charges apply.</span><a id="resendUsageLink" class="button button-secondary provider-usage-link" href="https://resend.com/settings/usage" target="_blank" rel="noreferrer" hidden="">Open Resend usage ↗</a><span class="cancel-waves"></span></aside>
+          </section>
+
+          <section class="view" data-view-panel="advanced" aria-labelledby="modeHeading" hidden="">
+            <header class="page-header"><div><p class="page-kicker">Privacy &amp; behavior</p><h1 id="modeHeading">Advanced</h1><p>Control Gmail integration, data use and local credentials.</p></div></header>
+            <section class="paper-card settings-list"><div class="setting-row"><div><span class="card-label">Gmail integration</span><h2>Show Alias in Gmail</h2><p>Setup enables this automatically. Turn it off here only when you want to hide the Send via alias button; Gmail’s normal Send button remains unchanged.</p></div><label class="switch" aria-label="Show Alias in Gmail"><input id="enabled" name="enabled" type="checkbox"><span class="switch-track"></span></label></div><div class="setting-row disclosure-row"><div class="disclosure-copy"><span class="card-label">Draft data</span><h2>Consent belongs in setup</h2><p id="advancedConsentStatus">Review and accept the required data-use disclosure from Overview before enabling Alias in Gmail.</p><button class="button button-secondary" type="button" data-view="overview">Review Gmail setup</button></div></div></section>
+            <section class="paper-card check-configuration-card"><div><span class="card-label">Preflight</span><h2>Check configuration</h2><p>Validate the saved sender, consent, selected provider and credentials without sending an email.</p></div><button id="checkConfigurationButton" class="button button-secondary" type="button"><svg class="icon"><use href="assets/icons.svg#check"></use></svg>Check configuration</button><p id="configurationCheckResult" class="configuration-result"></p></section>
+            <section class="paper-card security-card"><svg class="security-emblem"><use href="assets/icons.svg#shield"></use></svg><div><span class="card-label">Local credentials</span><h2>Stored only in trusted extension pages</h2><p>Use your own provider account. Provider limits and charges apply.</p></div></section>
+            <div id="internalMockControl" hidden=""></div>
+          </section>
+
+          <section class="view" data-view-panel="diagnostics" aria-labelledby="diagnosticsHeading" hidden="">
+            <header class="page-header"><div><p class="page-kicker">Privacy-safe evidence</p><h1 id="diagnosticsHeading">Setup and last send</h1><p>Diagnostics intentionally exclude message content, complete recipients and credentials.</p></div><a class="button button-secondary" href="https://mail.google.com/" target="_blank" rel="noreferrer"><svg class="icon"><use href="assets/icons.svg#external"></use></svg>Open Gmail</a></header>
+            <div id="configurationChecks" class="check-strip"></div>
+            <div class="diagnostic-grid"><section class="paper-card activity-card"><div class="card-label">Configuration checks</div><div id="diagnosticNarrative" class="timeline"><div class="timeline-item"><span></span><div><strong>Waiting for a configuration check</strong><small>Refresh diagnostics to inspect setup.</small></div></div></div></section><section class="paper-card summary-card"><div class="summary-heading"><div class="card-label">Latest send summary</div><time id="diagnosticTime"></time></div><pre id="lastSendSummary" tabindex="0">No send recorded yet.</pre></section></div>
+            <section class="paper-card diagnostic-actions"><span class="card-label">Actions</span><div><button id="refreshDiagnosticsButton" class="button button-secondary" type="button"><svg class="icon"><use href="assets/icons.svg#refresh"></use></svg>Refresh</button><button id="clearDiagnosticsButton" class="button button-quiet" type="button"><svg class="icon"><use href="assets/icons.svg#trash"></use></svg>Clear</button><button id="copyDiagnosticsButton" class="button button-secondary" type="button"><svg class="icon"><use href="assets/icons.svg#copy"></use></svg>Copy diagnostic report</button></div></section>
+            <aside class="postal-note"><svg class="icon"><use href="assets/icons.svg#info"></use></svg><span>No message content is stored or logged.</span><span class="cancel-waves"></span></aside>
+          </section>
+
+          <section class="view" data-view-panel="support" aria-labelledby="supportHeading" hidden="">
+            <header class="page-header"><div><p class="page-kicker">Help desk</p><h1 id="supportHeading">Support</h1><p>Share safe diagnostics when something goes wrong.</p></div></header>
+            <section class="support-grid"><article class="paper-card support-card"><h2>Community source</h2><p>This project is provided as-is. Review diagnostics before sharing; never publish API keys or private email.</p><a class="button button-primary" href="https://github.com/yazanbaker94/alias-for-gmail/issues" target="_blank" rel="noreferrer">GitHub issues</a></article></section>
+            <section class="paper-card support-route"><div class="card-label">Before contacting support</div><ol><li>Choose <strong>Check configuration</strong> in Advanced.</li><li>Use your own provider account. Provider limits and charges apply.</li><li>Copy the diagnostic report and remove anything you do not want to share.</li></ol></section>
+            <aside class="postal-note"><svg class="icon"><use href="assets/icons.svg#lock"></use></svg><span>Support will never ask for a provider API key, password, MFA code or private request token.</span><span class="cancel-waves"></span></aside>
+          </section>
+
+          <div id="settingsSavebar" class="savebar"><p id="unsavedHint" class="unsaved-hint"></p><button id="saveButton" class="button button-primary" type="submit"><span>Save changes</span></button></div>
+        </form>
+      </main>
+    </div>
+  
+
+</body></html>

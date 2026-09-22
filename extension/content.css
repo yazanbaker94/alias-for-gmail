@@ -1,0 +1,186 @@
+.gmail-alias-send {
+  --alias-ink: #122b4b;
+  --alias-muted: #647289;
+  --alias-blue: #155cf6;
+  --alias-green: #13944f;
+  --alias-red: #df3f3f;
+  align-items: center !important;
+  background: #fff !important;
+  border: 1px solid #b9c5d8 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px rgba(26, 39, 56, 0.08) !important;
+  box-sizing: border-box !important;
+  display: inline-grid !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  grid-template-columns: 24px minmax(0, auto) !important;
+  grid-template-rows: 1fr !important;
+  height: 36px !important;
+  margin-left: 6px !important;
+  max-width: min(250px, 44vw) !important;
+  min-height: 36px !important;
+  padding: 3px 9px 3px 7px !important;
+  vertical-align: middle !important;
+}
+
+.gmail-alias-send::before {
+  align-self: center !important;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='.75' y='.75' width='22.5' height='22.5' rx='3' fill='%23f8f6ef' stroke='%23c9c3b8' stroke-width='1.5'/%3E%3Cpath fill='%23122b4b' d='M6.2 18h2.2l1.25-3.25h5.15L16.1 18h2.35L13.25 5.6h-2.2L6.2 18Zm4.2-5.25 1.85-4.8 1.85 4.8h-3.7Z'/%3E%3Cpath stroke='%23274e77' stroke-width='.7' opacity='.55' d='M5 20c2-1.2 4 1.2 6 0s4 1.2 6 0'/%3E%3Cpath stroke='%23e15750' stroke-width='1.6' d='M20.5 4v4M20.5 12v4'/%3E%3C/svg%3E") !important;
+  content: "" !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  height: 22px !important;
+  justify-self: center !important;
+  width: 22px !important;
+}
+
+.gmail-alias-send__button {
+  appearance: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  color: var(--alias-ink) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  font: 600 11px/13px Arial, Helvetica, sans-serif !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  height: auto !important;
+  margin: 0 !important;
+  max-width: 190px !important;
+  min-width: 105px !important;
+  overflow: hidden !important;
+  padding: 0 1px 0 3px !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+.gmail-alias-send__button-title,
+.gmail-alias-send__button-detail {
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.gmail-alias-send__button-detail {
+  color: #506783 !important;
+  font-size: 9px !important;
+  font-weight: 500 !important;
+}
+
+.gmail-alias-send:hover:not([data-state="sending"]):not([data-state="success"]) {
+  background: #f7f9fd !important;
+  border-color: #7f9ed0 !important;
+  box-shadow: 0 2px 5px rgba(21, 92, 246, 0.12) !important;
+}
+
+.gmail-alias-send:focus-within {
+  outline: 3px solid rgba(21, 92, 246, 0.22) !important;
+  outline-offset: 2px !important;
+}
+
+.gmail-alias-send__button:focus-visible {
+  outline: 0 !important;
+}
+
+.gmail-alias-send__button:disabled {
+  cursor: default !important;
+}
+
+.gmail-alias-send__status {
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+.gmail-alias-send[data-state="sending"] {
+  background: #edf3ff !important;
+  border-color: #c5d7ff !important;
+}
+
+.gmail-alias-send[data-state="sending"]::before {
+  animation: alias-spin .8s linear infinite !important;
+  background: transparent !important;
+  border: 2px solid #c4d3f5 !important;
+  border-right-color: var(--alias-blue) !important;
+  border-radius: 50% !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+
+.gmail-alias-send[data-state="sending"] .gmail-alias-send__button-title,
+.gmail-alias-send[data-state="sending"] .gmail-alias-send__button-detail {
+  color: #124bc3 !important;
+}
+
+.gmail-alias-send[data-state="success"] {
+  background: #edf8f0 !important;
+  border-color: #9fd4b3 !important;
+}
+
+.gmail-alias-send[data-state="success"]::before,
+.gmail-alias-send[data-state="error"]::before {
+  align-items: center !important;
+  background: transparent !important;
+  border: 1.5px solid var(--alias-green) !important;
+  border-radius: 50% !important;
+  color: var(--alias-green) !important;
+  content: "✓" !important;
+  display: flex !important;
+  font: 700 13px/1 Arial, Helvetica, sans-serif !important;
+  height: 20px !important;
+  justify-content: center !important;
+  width: 20px !important;
+}
+
+.gmail-alias-send[data-state="success"] .gmail-alias-send__button-title,
+.gmail-alias-send[data-state="success"] .gmail-alias-send__button-detail,
+.gmail-alias-send[data-state="success"] .gmail-alias-send__status {
+  color: #10733e !important;
+}
+
+.gmail-alias-send[data-state="error"] {
+  background: #fff0ef !important;
+  border-color: #f0aaa5 !important;
+}
+
+.gmail-alias-send[data-state="error"]::before {
+  border-color: var(--alias-red) !important;
+  color: var(--alias-red) !important;
+  content: "!" !important;
+}
+
+.gmail-alias-send[data-state="error"] .gmail-alias-send__button-title,
+.gmail-alias-send[data-state="error"] .gmail-alias-send__button-detail,
+.gmail-alias-send[data-state="error"] .gmail-alias-send__status {
+  color: #c83232 !important;
+}
+
+@keyframes alias-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 760px) {
+  .gmail-alias-send {
+    max-width: 48vw !important;
+    padding-inline: 6px !important;
+  }
+
+  .gmail-alias-send__button { max-width: 142px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gmail-alias-send[data-state="sending"]::before {
+    animation-duration: 1.8s !important;
+  }
+}

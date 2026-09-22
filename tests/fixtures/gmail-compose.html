@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"></head>
+  <body>
+    <div id="compose" class="M9" role="dialog" aria-label="New Message">
+      <div class="aoD to-field">
+        <span class="recipient-chip" email="alice@example.com">Alice</span>
+        <input name="to" aria-label="To recipients" value="Bob &lt;bob@example.net&gt;">
+      </div>
+
+      <div class="aoD cc-field">
+        <span class="recipient-chip" data-hovercard-id="carol@example.org">Carol</span>
+        <textarea name="cc" aria-label="Cc recipients"></textarea>
+      </div>
+
+      <div class="aoD bcc-field">
+        <input name="bcc" aria-label="Bcc recipients" value="audit@example.com">
+      </div>
+
+      <input name="subjectbox" value="A realistic Gmail subject">
+      <div
+        class="Am"
+        role="textbox"
+        contenteditable="true"
+        g_editable="true"
+        aria-label="Message Body"
+      ><p>Hello <strong>team</strong>,</p><p>Second line.</p></div>
+
+      <div class="compose-actions">
+        <div class="dC">
+          <div class="aoO" role="button" aria-label="Send (Ctrl-Enter)" data-tooltip="Send">Send</div>
+          <div role="button" aria-label="More send options">More send options</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

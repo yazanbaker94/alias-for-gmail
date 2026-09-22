@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Alias postal stamp mark</title>
+  <defs>
+    <pattern id="airmail" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="16" fill="#e15750"/>
+      <rect x="6" width="5" height="16" fill="#f8f6ef"/>
+      <rect x="11" width="5" height="16" fill="#274e77"/>
+    </pattern>
+  </defs>
+  <path fill="#f8f6ef" stroke="#d7d1c6" stroke-width="3" d="M12 5l5 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 5 4-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 6 4 6-4 5-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-5-4 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-6 4-6-4-5z"/>
+  <rect x="19" y="18" width="90" height="92" rx="2" fill="none" stroke="#c8c1b4" stroke-width="2"/>
+  <rect x="101" y="21" width="6" height="86" fill="url(#airmail)"/>
+  <path fill="#112d50" d="M34 92h9l6-16h29l6 16h10L67 31H57L34 92zm18-24 11-28 12 28H52z"/>
+  <g fill="none" stroke="#214b76" stroke-linecap="round" opacity=".48">
+    <path d="M27 100c8-5 16 5 24 0s16 5 24 0 16 5 24 0"/>
+    <path d="M27 105c8-5 16 5 24 0s16 5 24 0 16 5 24 0"/>
+  </g>
+</svg>

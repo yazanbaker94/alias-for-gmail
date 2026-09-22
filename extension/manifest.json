@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "minimum_chrome_version": "102",
+  "name": "Alias: Custom Domain Email for Gmail",
+  "version": "1.0.0",
+  "description": "Send from your own verified domain in Gmail using your own Resend or Cloudflare credentials.",
+  "icons": {
+    "16": "assets/alias-16.png",
+    "32": "assets/alias-32.png",
+    "48": "assets/alias-48.png",
+    "128": "assets/alias-128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.resend.com/*",
+    "https://api.cloudflare.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "Open Alias",
+    "default_icon": {
+      "16": "assets/alias-16.png",
+      "32": "assets/alias-32.png"
+    }
+  }
+}
